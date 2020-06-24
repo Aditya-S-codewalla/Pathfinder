@@ -32,6 +32,8 @@ public class Pathfinder : MonoBehaviour
 
     public List<Node> FindPathWithBFS(Vector3 startPos, Vector3 endPos)
     {
+        print("Inside BFS");
+
         Node startNode = grid.GetNodeFromWorldPosition(startPos);
         Node endNode = grid.GetNodeFromWorldPosition(endPos);
 
@@ -68,6 +70,9 @@ public class Pathfinder : MonoBehaviour
 
     public List<Node> FindPathWithDFS(Vector3 startPos, Vector3 endPos)
     {
+
+        print("Inside DFS");
+
         Node startNode = grid.GetNodeFromWorldPosition(startPos);
         Node endNode = grid.GetNodeFromWorldPosition(endPos);
 

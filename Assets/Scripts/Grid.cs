@@ -61,6 +61,8 @@ public class Grid : MonoBehaviour
                 Vector3 worldPosition = gridWorldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
                 bool isWalkable = !Physics.CheckSphere(worldPosition, nodeRadius, nonWalkableLayerMask);
                 grid[x, y] = new Node(isWalkable, worldPosition, x, y);
+                grid[x, y].parentNode = null;
+                grid[x, y].gCost = int.MaxValue;
             }
         }
     }

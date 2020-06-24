@@ -19,7 +19,22 @@ public class BasicMovement : MonoBehaviour
 
             if(Physics.Raycast(ray,out hit))
             {
-                path = Pathfinder.Instance.FindPathWithAStarHeap(transform.position, hit.point);
+                switch (UIManager.Instance.pathSelected)
+                {
+                    case UIManager.PathStates.BFS:
+                        path = Pathfinder.Instance.FindPathWithBFS(transform.position, hit.point);
+                        break;
+                    case UIManager.PathStates.DFS:
+                        path = Pathfinder.Instance.FindPathWithDFS(transform.position, hit.point);
+                        break;
+                    case UIManager.PathStates.Astar:
+                        path = Pathfinder.Instance.FindPathWithAStarHeap(transform.position, hit.point);
+                        break;
+                    default:
+                        path = Pathfinder.Instance.FindPathWithAStarHeap(transform.position, hit.point);
+                        break;
+                }
+                //path = Pathfinder.Instance.FindPathWithAStarHeap(transform.position, hit.point);
             }
             
             if (path != null)
