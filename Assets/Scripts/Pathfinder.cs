@@ -32,7 +32,8 @@ public class Pathfinder : MonoBehaviour
 
     public List<Node> FindPathWithBFS(Vector3 startPos, Vector3 endPos)
     {
-        print("Inside BFS");
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
 
         Node startNode = grid.GetNodeFromWorldPosition(startPos);
         Node endNode = grid.GetNodeFromWorldPosition(endPos);
@@ -49,6 +50,8 @@ public class Pathfinder : MonoBehaviour
 
             if (currentNode == endNode)
             {
+                stopwatch.Stop();
+                UIManager.Instance.UpdatePathCalcText("Time:" + stopwatch.ElapsedMilliseconds + "ms");
                 return RetracePath(startNode, endNode);
             }
 
@@ -71,7 +74,8 @@ public class Pathfinder : MonoBehaviour
     public List<Node> FindPathWithDFS(Vector3 startPos, Vector3 endPos)
     {
 
-        print("Inside DFS");
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
 
         Node startNode = grid.GetNodeFromWorldPosition(startPos);
         Node endNode = grid.GetNodeFromWorldPosition(endPos);
@@ -88,6 +92,8 @@ public class Pathfinder : MonoBehaviour
 
             if (currentNode == endNode)
             {
+                stopwatch.Stop();
+                UIManager.Instance.UpdatePathCalcText("Time:" + stopwatch.ElapsedMilliseconds + "ms");
                 return RetracePath(startNode, endNode);
             }
 
@@ -132,7 +138,7 @@ public class Pathfinder : MonoBehaviour
             if (currentNode == endNode)
             {
                 stopwatch.Stop();
-                print("Path Found(normal):" + stopwatch.ElapsedMilliseconds + "ms");
+                UIManager.Instance.UpdatePathCalcText("Time:" + stopwatch.ElapsedMilliseconds + "ms");
                 return RetracePath(startNode, endNode);
             }
 
@@ -191,7 +197,7 @@ public class Pathfinder : MonoBehaviour
             if (currentNode == endNode)
             {
                 stopwatch.Stop();
-                print("Path Found(Heap):" + stopwatch.ElapsedMilliseconds + "ms");
+                UIManager.Instance.UpdatePathCalcText("Time:" + stopwatch.ElapsedMilliseconds + "ms");
                 return RetracePath(startNode, endNode);
             }
 
@@ -262,7 +268,8 @@ public class Pathfinder : MonoBehaviour
         }
 
         path.Reverse();
-        print("path length"+path.Count);
+        //print("path length"+path.Count);
+        UIManager.Instance.UpdatePathLenthText("length:" + path.Count.ToString());
         grid.debugPath = path;
         return path;
     }

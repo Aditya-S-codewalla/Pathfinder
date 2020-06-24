@@ -16,6 +16,7 @@ public class BasicMovement : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            path.Clear();
 
             if(Physics.Raycast(ray,out hit))
             {
@@ -36,6 +37,10 @@ public class BasicMovement : MonoBehaviour
                 }
                 //path = Pathfinder.Instance.FindPathWithAStarHeap(transform.position, hit.point);
             }
+            else
+            {
+                //if player clicked outside navmesh
+            }
             
             if (path != null)
             {
@@ -53,9 +58,9 @@ public class BasicMovement : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, node.worldPosition, moveSpeed * Time.deltaTime);
 
-                Vector3 direction = (node.worldPosition - transform.position).normalized;
-                Quaternion lookRotation = Quaternion.LookRotation(direction, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, turnSpeed * Time.deltaTime);
+                //Vector3 direction = (node.worldPosition - transform.position);
+                //Quaternion lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+                //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, turnSpeed * Time.deltaTime);
 
                 yield return null;
             }
