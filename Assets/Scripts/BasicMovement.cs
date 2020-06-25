@@ -16,7 +16,6 @@ public class BasicMovement : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            path.Clear();
 
             if(Physics.Raycast(ray,out hit))
             {
@@ -40,6 +39,7 @@ public class BasicMovement : MonoBehaviour
             else
             {
                 //if player clicked outside navmesh
+                path.Clear();
             }
             
             if (path != null)
